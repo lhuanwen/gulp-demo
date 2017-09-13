@@ -11,7 +11,7 @@ var gulp        = require('gulp'),
 // 静态服务器
 gulp.task('browserSync', function() {
     browserSync.init({
-        server: "./web"
+        server: "./public"
     });
 });
 
@@ -25,7 +25,7 @@ gulp.task('browser-sync', function() {
 gulp.task('minify-html',function() {
     return gulp.src('app/*.html')
         .pipe(minifyHtml())
-        .pipe(gulp.dest('web'))
+        .pipe(gulp.dest('public'))
         .pipe(reload({
             stream: true
         }))
@@ -34,7 +34,7 @@ gulp.task('minify-html',function() {
 gulp.task('sass', function () {
     return gulp.src('app/scss/*.scss')
         .pipe(sass())
-        .pipe(gulp.dest('web/css'))
+        .pipe(gulp.dest('public/css'))
         .pipe(reload({
             stream: true
         }))
