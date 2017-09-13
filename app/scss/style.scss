@@ -1,13 +1,19 @@
-html, body{
+html, body {
     padding: 0;
     margin: 0;
 }
-.root{
+
+.root {
     text-align: center;
     color: #127823;
-    >div{
+    > div {
         font-size: 16px;
         color: gray;
         margin: 0 auto;
     }
+}
+
+.test {
+    display: flex;
+    font-size: 10px;
 }

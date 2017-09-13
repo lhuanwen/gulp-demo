@@ -2,11 +2,14 @@
  * Created by leo on 2017/9/12.
  */
 
+'use strict';
+
 var gulp        = require('gulp'),
     sass        = require('gulp-sass'),
     browserSync = require('browser-sync').create(),
-    minifyHtml= require("gulp-minify-html"),
-    reload      = browserSync.reload;
+    minifyHtml  = require("gulp-minify-html"),
+    reload      = browserSync.reload,
+    sourcemaps = require('gulp-sourcemaps');
 
 // 静态服务器
 gulp.task('browserSync', function() {
@@ -33,7 +36,9 @@ gulp.task('minify-html',function() {
 
 gulp.task('sass', function () {
     return gulp.src('app/scss/*.scss')
-        .pipe(sass())
+        .pipe(sourcemaps.init())
+        .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('public/css'))
         .pipe(reload({
             stream: true
