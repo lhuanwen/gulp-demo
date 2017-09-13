@@ -9,6 +9,7 @@ var gulp        = require('gulp'),
     browserSync = require('browser-sync').create(),
     minifyHtml  = require("gulp-minify-html"),
     reload      = browserSync.reload,
+    autoprefixer = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps');
 
 // 静态服务器
@@ -37,6 +38,10 @@ gulp.task('minify-html',function() {
 gulp.task('sass', function () {
     return gulp.src('app/scss/*.scss')
         .pipe(sourcemaps.init())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('public/css'))
